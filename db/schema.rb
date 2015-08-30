@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830124650) do
+ActiveRecord::Schema.define(version: 20150830141342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "days", force: :cascade do |t|
+    t.string   "name",       default: "", null: false
+    t.integer  "order",      default: 99, null: false
+    t.integer  "user_id",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string   "name",                   default: "", null: false
+    t.integer  "rank",                   default: 99, null: false
+    t.integer  "sets",                   default: 4,  null: false
+    t.integer  "one_rep_base_weight",    default: 0,  null: false
+    t.integer  "cumulative_base_weight", default: 0,  null: false
+    t.integer  "day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.integer  "exercise_id",             null: false
+    t.integer  "reps",        default: 0, null: false
+    t.integer  "weight",      default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
