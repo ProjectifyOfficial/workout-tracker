@@ -1,20 +1,112 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en" ng-app="workoutTracker">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Workout Tracker" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Workout Tracker" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Do You Even Lift Bro?" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Do You Even Lift Bro?" %>">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
-  </body>
+</head>
+<body signed-in="<%= user_signed_in? %>">
+    <% if user_signed_in? %>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top header" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="logo" href="/">
+                    <%= image_tag 'logo.png' %>
+                </a>
+                <a class="company-logo" href="/">
+                    Do You Even Lift Bro?
+                </a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <% if user_signed_in? %>
+                <li class="dropdown">
+                    <div class="dropdown-link nav-dropdown-link" menu="account_menu"><%= current_user.email %> <i class="fa fa-caret-down"></i></div>
+                    <div class="dropdown-menu right account-menu" style="display:none" id="account_menu">
+                        <div class="dd_arrow"></div>
+                        <div class="content">
+                            <ul class="dropdown-items">
+                                <li><%= link_to "Account <i class='fa fa-fw fa-user'></i>".html_safe, edit_user_registration_path %></li>
+                                <li><%= button_to "Sign Out", destroy_user_session_path, :method => :delete %><i class='fa fa-fw fa-sign-out form'></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="NavbarCtrl">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="spacer">
+                        <a href="#" style="cursor:default;">&nbsp;</a>
+                    </li>
+                    <li ng-class="{active: tabView === ''}">
+                        <a href="/"><i class="fa fa-fw fa-home"></i> Dashboard</a>
+                    </li>
+                    <li ng-class="{active: tabView === 'routines'}">
+                        <a href="/manage"><i class="fa fa-fw fa-calendar-o"></i> Routines</a>
+                    </li>
+                    <li ng-class="{active: tabView === 'exercises'}">
+                        <a href="/distribute"><i class="fa fa-fw fa-futbol-o"></i> Exercises</a>
+                    </li>
+                    <li ng-class="{active: tabView === 'goals'}">
+                        <a href="/measure"><i class="fa fa-fw fa-check-square-o"></i> Goals</a>
+                    </li>
+                    <li ng-class="{active: tabView === 'setup'}">
+                        <a href="/setup"><i class="fa fa-fw fa-wrench"></i> Setup</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <%= yield %>
+        </div>
+    </div>
+
+    <div class="container">
+        <% if notice.present? %>
+        <div style="display:none;">
+            <div id="notice_content">
+                <%= notice %>
+            </div>
+        </div>
+        <script type="text/javascript">
+        setTimeout(function(){
+            showContentModal('#notice_content');
+        },1500);
+        </script>
+        <% end %>
+        <% if alert.present? %>
+        <div style="display:none;">
+            <div id="alert_content">
+                <%= alert %>
+            </div>
+        </div>
+        <script type="text/javascript">
+        setTimeout(function(){
+            showContentModal('#alert_content');
+        },1500);
+        </script>
+        <% end %>
+    </div>
+    <% else %>
+    <%= yield %>
+    <% end %>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag "application", defer: true %>
+</body>
 </html>
