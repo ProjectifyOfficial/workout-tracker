@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150830141342) do
     t.datetime "updated_at"
   end
 
-  create_table "sets", force: :cascade do |t|
+  create_table "set_logs", force: :cascade do |t|
     t.integer  "exercise_id",             null: false
     t.integer  "reps",        default: 0, null: false
     t.integer  "weight",      default: 0, null: false
