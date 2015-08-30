@@ -1,0 +1,256 @@
+/*
+    * This stylesheet contains all overrides to the default Bootstrap SB Admin template.
+    * SB Admin template url: https://github.com/IronSummitMedia/startbootstrap-sb-admin/
+*/
+@font-face {
+    font-family: 'Roboto';
+    src:url('/assets/Roboto-Regular-webfont.eot?deggw1');
+    src:url('/assets/Roboto-Regular-webfont.eot?#iefixdeggw1') format('embedded-opentype'),
+        url('/assets/Roboto-Regular-webfont.ttf') format('truetype'),
+        url('/assets/Roboto-Regular-webfont.svg?deggw1#icomoon') format('svg');
+}
+
+$grey                : #CCCCCC;
+$royal-blue          : #1E2F54;
+$breadcrumbs-blue    : #464F71;
+$burgandy            : #3B0301;
+$breadcrumbs-orange  : #E18500;
+$topbar-dropdown     : #EDE5BB;
+
+$content-margin: 30px;
+
+body {
+    background: $grey;
+}
+.roboto-regular {
+    font-family: "Roboto", "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+}
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#wrapper {
+    background-color: $grey;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+#page-wrapper {
+    background-color: $grey;
+    height: 100%;
+}
+@media(min-width:768px) {
+    #wrapper {
+    background-color: $grey;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    #page-wrapper {
+        background-color: $grey;
+        height: 100%;
+    }
+}
+/* Top Navigation */
+.top-nav {
+    li.dropdown {
+        padding-top: 15px;
+        padding-bottom: 3px;
+        line-height: 20px;
+        color: #999;
+        &:hover {
+            color: #666;
+            background: #EEE;
+        }
+    }
+}
+.dropdown-menu, .dropdown-directive-menu {
+    z-index: 8000;
+    border: 1px solid lightgrey;
+    overflow: hidden;
+    background: $grey;
+    position: absolute;
+    padding: 0;
+    min-width: 200px;
+    margin-top: 1px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+ul.dropdown-items {
+    position: static;
+    padding: 0;
+    overflow: hidden;
+    li {
+        display: block;
+        font-size: 1.2em;
+        margin: 0;
+        form {
+            display: inline-block;
+            float: left;
+            width: 100%;
+            div {
+                width: 100%;
+                input {
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        }
+        i.form {
+            display: inline-block;
+            float: right;
+            font-size: 1.2em;
+            color: #666;
+            position: relative;
+            right: 16px;
+            top: -32px;
+            margin-bottom: -16px;
+        }
+        a,
+        form > div > input {
+            cursor: pointer;
+            display: block;
+            padding: 15px 20px;
+            border: none;
+            background: $grey;
+            color: #666;
+            i {
+                float: right;
+                font-size: 1.2em;
+            }
+            &:hover {
+                background: #EEE;
+            }
+        }
+    }
+}
+.navbar-inverse {
+    border: none;
+    .navbar-nav > li > a {
+        color: #CCC;
+        &:hover,
+        &:active,
+        &:focus {
+            background: $grey;
+            color: $royal-blue;
+            border-left: 6px solid rgba(72, 201, 224, 1);
+            padding-left: 9px;
+        }
+    }
+    .navbar-nav > li.active > a,
+    .navbar-nav > li.active > a:hover {
+        background: $grey;
+        color: $royal-blue;
+        border-left: 6px solid rgba(72, 201, 224, 1);
+        padding-left: 9px;
+    }
+    .navbar-nav > li.spacer > a,
+    .navbar-nav > li.spacer > a:hover {
+        background: $royal-blue;
+        color: $royal-blue;
+        border-left: none;
+        padding-left: 0;
+    }
+}
+nav {
+    .navbar-collapse {
+        .side-nav {
+            @extend .roboto-regular;
+            background: $royal-blue;
+            border-right: 1px solid #CCC;
+            font-weight: 500;
+            font-size: 1.3em;
+            top: 50px;
+        }
+    }
+}
+
+.header {
+    background: $royal-blue;
+    border-bottom: 2px solid #CCC;
+    color: #333;
+    height: 45px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    .company-logo {
+        cursor: pointer;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        font-weight: 700;
+        font-size: 2em;
+        color: white;
+        @extend .roboto-regular;
+        display: inline-block;
+        position: relative;
+        top: -15px;
+        img {
+            height: 34px;
+        }
+    }
+    .logo {
+        cursor: pointer;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        font-weight: 700;
+        font-size: 2em;
+        color: white;
+        @extend .roboto-regular;
+
+        display: inline-block;
+        margin-top: -10px;
+        margin-left: $content-margin;
+        background: $royal-blue;
+        margin: auto;
+        padding-left: 36px;
+        padding-right: 138px;
+        img {
+            height: 50px;
+        }
+        .firm {
+            font-size: 1.3em;
+        }
+    }
+    .lnk {
+        cursor: pointer;
+    }
+    .btn {
+        padding: 5px 20px;
+        background: rgba(0, 0, 0, 0.29);
+        border-radius: 20px;
+    }
+    ul {
+        li {
+        }
+    }
+}
+
+.nav-dropdown-link {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px 5px 15px;
+    display: block;
+    border-radius: 4px;
+    position: relative;
+    top: -5px;
+    i {
+        margin-left: 10px;
+        padding-right: 7px;
+    }
+}
+.header-lnk {
+    @extend .roboto-regular;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: white;
+    &.small {
+        font-size: .9em;
+    }
+    &.adjust {
+        position: relative;
+        top: -5px;
+    }
+}
