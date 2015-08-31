@@ -52,20 +52,17 @@
                     <li class="spacer">
                         <a href="#" style="cursor:default;">&nbsp;</a>
                     </li>
-                    <li ng-class="{active: tabView === ''}">
-                        <a href="/"><i class="fa fa-fw fa-home"></i> Dashboard</a>
-                    </li>
-                    <li ng-class="{active: tabView === 'routines'}">
-                        <a href="/manage"><i class="fa fa-fw fa-calendar-o"></i> Routines</a>
+                    <li ng-class="{active: tabView === '' || tabView === 'days'}">
+                        <a href="/"><i class="fa fa-fw fa-calendar-o"></i> Routines</a>
                     </li>
                     <li ng-class="{active: tabView === 'exercises'}">
-                        <a href="/distribute"><i class="fa fa-fw fa-futbol-o"></i> Exercises</a>
+                        <a href="/exercises"><i class="fa fa-fw fa-futbol-o"></i> Exercises</a>
                     </li>
                     <li ng-class="{active: tabView === 'goals'}">
-                        <a href="/measure"><i class="fa fa-fw fa-check-square-o"></i> Goals</a>
+                        <a href="#"><i class="fa fa-fw fa-check-square-o"></i> Goals</a>
                     </li>
                     <li ng-class="{active: tabView === 'setup'}">
-                        <a href="/setup"><i class="fa fa-fw fa-wrench"></i> Setup</a>
+                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Setup</a>
                     </li>
                 </ul>
             </div>
@@ -105,8 +102,5 @@
     <% else %>
     <%= yield %>
     <% end %>
-
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
-    <%= javascript_include_tag "application", defer: true %>
 </body>
 </html>

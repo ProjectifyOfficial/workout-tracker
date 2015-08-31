@@ -4,32 +4,69 @@ class DaysController < ApplicationController
     def index
         @user = current_user
         @days = @user.days
-        @charts = {}
-        @days.each do |day|
-            @charts[day.order] = {
-                name: day.name,
-                exercises: {}
-            }
-            day.exercises.each do |exercise|
-                chart = LazyHighCharts::HighChart.new('line') do |f|
-                    f.title(text: exercise.name)
-                    f.xAxis(categories: exercise.dates)
-                    f.series(name: "Max Weight (1 Rep)", yAxis: 0, data: exercise.one_rep_max_weight_days)
-                    f.series(name: "Max Weight (Cumulative)", yAxis: 1, data: exercise.cumulative_max_weight_days)
+    end
 
-                    f.yAxis [
-                        {title: {text: "LBs"}},
-                        {title: {text: "LBs"}},
-                    ]
+    def show
+        @day = Day.find(params[:id])
+    end
 
-                    f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-                end
+    def new
+        @day = Day.new
+    end
 
-                @charts[day.order][:exercises][:rank] = {
-                    name: exercise.name,
-                    chart: chart
-                }
+    def create
+        @day = Day.new(day_params)
+        @day.user = current_user
+
+        if day_params[:order] == "-1" && !Day.where(order: 1).first.nil?
+            Day.all.each do |day|
+                day.update(order: day.order + 1)
+            end
+            @day.order = 1
+        elsif day_params[:order] == "-1" && Day.where(order: 1).first.nil?
+            @day.order = 1
+        end
+
+        if @day.save
+            respond_to do |format|
+                format.html { redirect_to day_path(@day) }
+            end
+        else
+            respond_to do |format|
+                format.html { render action: 'new', notice: 'Error creating Day Routine.' }
             end
         end
+    end
+
+    def edit
+        @day = Day.find(params[:id])
+    end
+
+    def update
+        @day = Day.find(params[:id])
+
+        if @day.update_attributes(day_params)
+            respond_to do |format|
+                format.html { redirect_to day_path(@day) }
+            end
+        else
+            respond_to do |format|
+                format.html { render action: 'new', notice: 'Error updating Day Routine.' }
+            end
+        end
+    end
+
+    def destroy
+        @day = Day.destroy(params[:id])
+        redirect_to days_path
+    end
+
+    private
+
+    def day_params
+        params.require(:day).permit(
+            :name,
+            :order
+        )
     end
 end

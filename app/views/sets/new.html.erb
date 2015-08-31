@@ -1,0 +1,15 @@
+<h1 class="admin-center">Create a New <%= @exercise.name %> Set</h1>
+
+<div class="form-container">
+	<%= form_for @set, url: "/exercises/#{@exercise.id}/sets", method: :post, html: { role: 'form' } do |f| %>
+		<div class="form-group">
+			<%= f.label :reps %>
+			<%= f.text_field :reps, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.label :weight %>
+			<%= f.text_field :weight, class: 'form-control' %>
+		</div>
+		<%= f.submit class: 'btn btn-default' %>
+	<% end %>
+</div>

@@ -1,0 +1,15 @@
+<h1 class="admin-center">Edit a Day Routine</h1>
+
+<div class="form-container">
+	<%= form_for @day, url: day_path, method: :put, html: { role: 'form' } do |f| %>
+		<div class="form-group">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<%= f.label :order, "Insert After: " %>
+			<%= f.select :order, Day.all.map{|c| [c.name, c.id] }.prepend(['First', -1]) %>
+		</div>
+		<%= f.submit class: 'btn btn-default' %>
+	<% end %>
+</div>

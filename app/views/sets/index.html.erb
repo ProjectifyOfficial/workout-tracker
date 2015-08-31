@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <%= @exercise.name %> Sets
+                <span style="float:right;font-size:.5em;">
+                    <%= link_to "<i class='fa fa-file-o'></i> New Set".html_safe, new_exercise_set_path(@exercise) %>
+                </span>
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @sets.each do |set| %>
+                <tr>
+                    <td><%= "#{set.created_at.month} / #{set.created_at.day}" %></td>
+                    <td><%= set.reps %></td>
+                    <td><%= set.weight %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
