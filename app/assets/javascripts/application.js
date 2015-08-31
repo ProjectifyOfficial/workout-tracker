@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/themes/dark-blue
+//= require bindWithDelay
+//= require wait-until-exists
+//= require angular
+//= require workout-tracker
+//= require nav-controls
 //= require_tree .
