@@ -12,7 +12,7 @@ gem 'pg'
 gem 'puma'
 gem 'angular-ui-bootstrap-rails', '~> 0.12.1'
 gem 'font-awesome-rails', '~> 4.4.0.0'
-gem 'lazy_high_charts'
+gem "highcharts-rails", "~> 3.0.0"
 
 group :development, :test do
     gem 'web-console', '~> 2.0'
